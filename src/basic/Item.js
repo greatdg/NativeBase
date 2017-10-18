@@ -61,8 +61,8 @@ class Item extends Component {
 
 	floatUp(e) {
 		Animated.timing(this.state.topAnim, {
-			toValue: e || -22,
-			duration: 150,
+			toValue: e || -3,
+			duration: 100,
 		}).start();
 		Animated.timing(this.state.opacAnim, {
 			toValue: 0.7,
@@ -80,7 +80,6 @@ class Item extends Component {
 						key: "newFLabel",
 						float: true,
 						style: {
-							fontSize: 15,
 							lineHeight: 30,
 							...labelProps.style,
 						},
