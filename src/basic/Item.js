@@ -80,6 +80,7 @@ class Item extends Component {
 						key: "newFLabel",
 						float: true,
 						style: {
+							fontSize: 14,
 							lineHeight: 30,
 							...labelProps.style,
 						},
