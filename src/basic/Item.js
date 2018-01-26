@@ -14,17 +14,31 @@ import _ from "lodash";
 class Item extends Component {
 	constructor(props) {
 		super(props);
+		let topAnimPos = 18;
+		if (props.floatingLabel) {
+			if (props.forceUpLabel) {
+				topAnimPos = -3;
+			}
+		}
 		this.state = {
 			text: "",
-			topAnim: new Animated.Value(18),
+			topAnim: new Animated.Value(topAnimPos),
 			opacAnim: new Animated.Value(1),
+			forceUpLabel: props.forceUpLabel || false,
+			isFocused: props.forceUpLabel,
 		};
 	}
 	componentDidMount() {
+		const {
+			forceUpLabel
+		} = this.state;
+
 		if (this.props.floatingLabel) {
 			if (this.inputProps && this.inputProps.value) {
-				this.setState({ isFocused: true });
-				this.floatUp(-16);
+				if( !forceUpLabel ) {
+	 				this.setState({ isFocused: true });
+					this.floatUp(-16);
+				}
 			}
 			if (this.inputProps && this.inputProps.getRef) this.inputProps.getRef(this._inputRef);
 		}
@@ -282,6 +296,7 @@ Item.propTypes = {
 	floatingLabel: PropTypes.bool,
 	stackedLabel: PropTypes.bool,
 	fixedLabel: PropTypes.bool,
+	forceUpLabel: PropTypes.bool,
 	success: PropTypes.bool,
 	error: PropTypes.bool,
 };
